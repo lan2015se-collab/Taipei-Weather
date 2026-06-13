@@ -1,0 +1,180 @@
+/* ===== 全局 ===== */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans TC", "Microsoft JhengHei", sans-serif;
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
+    color: #e2e8f0;
+    min-height: 100vh;
+    line-height: 1.6;
+}
+.container { max-width: 1100px; margin: 0 auto; padding: 20px 24px; }
+
+/* ===== 头部 ===== */
+.header {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 16px 0; margin-bottom: 20px;
+    border-bottom: 1px solid #334155;
+}
+.header h1 { font-size: 28px; font-weight: 700; color: #f8fafc; }
+.header-left { display: flex; align-items: baseline; gap: 16px; }
+.update-time { color: #94a3b8; font-size: 14px; }
+.refresh-btn {
+    background: #3b82f6; color: #fff; border: none;
+    padding: 8px 20px; border-radius: 8px; cursor: pointer;
+    font-size: 14px; font-weight: 600;
+    transition: background 0.2s;
+}
+.refresh-btn:hover { background: #2563eb; }
+
+/* ===== 卡片 ===== */
+.card {
+    background: rgba(30, 41, 59, 0.8);
+    border: 1px solid #334155;
+    border-radius: 16px; padding: 24px; margin-bottom: 20px;
+    backdrop-filter: blur(10px);
+}
+.card h2 {
+    font-size: 18px; font-weight: 600; color: #94a3b8;
+    margin-bottom: 16px; letter-spacing: 0.5px;
+}
+.loading { color: #64748b; text-align: center; padding: 40px 0; }
+
+/* ===== 实时天气 ===== */
+.current-main {
+    display: flex; align-items: center; gap: 40px;
+    flex-wrap: wrap;
+}
+.current-temp-group { text-align: center; min-width: 140px; }
+.current-temp {
+    font-size: 72px; font-weight: 700; line-height: 1;
+    background: linear-gradient(180deg, #f8fafc 0%, #94a3b8 100%);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+.current-desc { font-size: 22px; color: #cbd5e1; margin-top: 8px; }
+.current-feels { color: #94a3b8; font-size: 14px; margin-top: 4px; }
+
+.current-details {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    gap: 20px; flex: 1;
+}
+.detail-item { text-align: center; }
+.detail-label { font-size: 12px; color: #64748b; text-transform: uppercase; letter-spacing: 1px; }
+.detail-value { font-size: 22px; font-weight: 600; color: #e2e8f0; margin-top: 4px; }
+.detail-unit { font-size: 13px; color: #94a3b8; margin-left: 2px; }
+
+/* ===== 概览行 ===== */
+.overview-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+@media (max-width: 768px) { .overview-row { grid-template-columns: 1fr; } }
+
+/* ===== 空气质量 ===== */
+.aqi-display { text-align: center; }
+.aqi-circle {
+    width: 80px; height: 80px; border-radius: 50%;
+    margin: 8px auto; display: flex;
+    align-items: center; justify-content: center;
+    font-size: 28px; font-weight: 700; color: #fff;
+}
+.aqi-detail-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 8px; margin-top: 12px;
+}
+.aqi-detail-item {
+    display: flex; justify-content: space-between;
+    font-size: 13px; padding: 4px 0;
+    border-bottom: 1px solid #1e293b;
+}
+.aqi-detail-item span:first-child { color: #64748b; }
+.aqi-detail-item span:last-child { color: #e2e8f0; font-weight: 600; }
+
+/* ===== 逐时迷你 ===== */
+.hourly-mini {
+    display: flex; gap: 12px; overflow-x: auto;
+    padding-bottom: 8px;
+}
+.hourly-mini-item {
+    text-align: center; min-width: 56px; flex-shrink: 0;
+}
+.hourly-mini-item .time { font-size: 12px; color: #64748b; }
+.hourly-mini-item .icon-s { font-size: 20px; margin: 4px 0; }
+.hourly-mini-item .temp { font-size: 16px; font-weight: 600; color: #e2e8f0; }
+.hourly-mini-item .rain { font-size: 11px; color: #60a5fa; }
+
+/* ===== 日出日落 ===== */
+.sun-display { text-align: center; }
+.sun-row {
+    display: flex; justify-content: space-around; align-items: center;
+    margin-top: 16px;
+}
+.sun-item { text-align: center; }
+.sun-item .sun-icon { font-size: 32px; margin-bottom: 4px; }
+.sun-item .sun-time { font-size: 20px; font-weight: 700; color: #f8fafc; }
+.sun-item .sun-label { font-size: 12px; color: #64748b; margin-top: 4px; }
+.sun-divider {
+    width: 60px; height: 2px;
+    background: linear-gradient(90deg, #f59e0b, #fbbf24, #f59e0b);
+    border-radius: 1px;
+}
+
+/* ===== 图表 ===== */
+.chart-container {
+    position: relative; height: 280px;
+    margin-bottom: 20px;
+}
+
+/* ===== 逐时表格 ===== */
+.hourly-table-wrapper { overflow-x: auto; }
+.hourly-table {
+    width: 100%; border-collapse: collapse; font-size: 13px;
+    white-space: nowrap;
+}
+.hourly-table th {
+    background: #1e293b; color: #64748b; font-weight: 600;
+    padding: 8px 12px; text-align: center; position: sticky; top: 0;
+}
+.hourly-table td {
+    padding: 8px 12px; text-align: center;
+    border-bottom: 1px solid #1e293b;
+}
+.hourly-table tr:hover { background: rgba(59, 130, 246, 0.05); }
+.rain-high { color: #60a5fa; font-weight: 600; }
+
+/* ===== 七日预报 ===== */
+.forecast-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+    gap: 12px;
+}
+.forecast-day {
+    background: rgba(15, 23, 42, 0.6);
+    border-radius: 12px; padding: 16px; text-align: center;
+    transition: transform 0.2s;
+}
+.forecast-day:hover { transform: translateY(-2px); }
+.forecast-day .day-name { font-size: 14px; color: #94a3b8; margin-bottom: 4px; }
+.forecast-day .day-date { font-size: 12px; color: #64748b; margin-bottom: 8px; }
+.forecast-day .day-icon { font-size: 28px; margin-bottom: 8px; }
+.forecast-day .day-desc { font-size: 14px; color: #cbd5e1; margin-bottom: 4px; }
+.forecast-day .day-temps { font-size: 16px; font-weight: 600; color: #f8fafc; }
+.forecast-day .day-temp-lo { color: #60a5fa; }
+.forecast-day .day-rain { font-size: 12px; color: #60a5fa; margin-top: 4px; }
+
+/* ===== Footer ===== */
+.footer {
+    display: flex; justify-content: space-between;
+    padding: 16px 0; border-top: 1px solid #334155;
+    font-size: 12px; color: #475569;
+    flex-wrap: wrap; gap: 8px;
+}
+
+/* ===== Weather Icons (text-based) ===== */
+.weather-icon-lg { font-size: 64px; }
+
+/* ===== Responsive ===== */
+@media (max-width: 600px) {
+    .current-main { flex-direction: column; gap: 16px; }
+    .current-temp { font-size: 56px; }
+    .current-details { grid-template-columns: repeat(3, 1fr); }
+    .header h1 { font-size: 22px; }
+}
