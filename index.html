@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>台北市气象平台</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <!-- 头部 -->
+        <header class="header">
+            <div class="header-left">
+                <h1>台北市气象平台</h1>
+                <span class="update-time" id="updateTime">载入中...</span>
+            </div>
+            <div class="header-right">
+                <button class="refresh-btn" onclick="refreshAll()">重新整理</button>
+            </div>
+        </header>
+
+        <!-- 实时天气卡片 -->
+        <section class="current-weather card" id="currentCard">
+            <div class="loading">载入即时天气中...</div>
+        </section>
+
+        <!-- 三栏概览 -->
+        <div class="overview-row">
+            <!-- 空气质量 -->
+            <section class="card aqi-card" id="aqiCard">
+                <h2>空气质量</h2>
+                <div class="loading">载入中...</div>
+            </section>
+
+            <!-- 逐时预报 (迷你) -->
+            <section class="card hourly-preview" id="hourlyPreview">
+                <h2>未来数小时</h2>
+                <div class="loading">载入中...</div>
+            </section>
+
+            <!-- 日出日落 -->
+            <section class="card sun-card" id="sunCard">
+                <h2>日出 / 日落</h2>
+                <div class="loading">载入中...</div>
+            </section>
+        </div>
+
+        <!-- 48小时逐时预报 -->
+        <section class="card">
+            <h2>48 小时逐时预报</h2>
+            <div class="chart-container">
+                <canvas id="hourlyChart"></canvas>
+            </div>
+            <div class="hourly-table-wrapper" id="hourlyTable"></div>
+        </section>
+
+        <!-- 七日预报 -->
+        <section class="card">
+            <h2>七日天气预报</h2>
+            <div class="forecast-grid" id="forecastGrid">
+                <div class="loading">载入中...</div>
+            </div>
+        </section>
+
+        <!-- 七日温度趋势图 -->
+        <section class="card">
+            <h2>七日温度趋势</h2>
+            <div class="chart-container">
+                <canvas id="tempChart"></canvas>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <span>数据来源: Open-Meteo (open-meteo.com) | 仅限台北市</span>
+            <span id="dataTimestamp"></span>
+        </footer>
+    </div>
+
+    <script src="/static/script.js"></script>
+</body>
+</html>
